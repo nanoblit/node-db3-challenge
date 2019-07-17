@@ -24,15 +24,9 @@ function add(scheme) {
 }
 
 function update(changes, id) {
-  return db
-    .transaction(trx => trx('schemes')
-      .where({ id })
-      .update(changes)
-      .then(ids => db('schemes')
-        .where({ ids })
-        .first())
-      .catch(error => console.log(error)))
-    .catch(error => console.log(error));
+  return db('schemes')
+    .where({ id })
+    .update(changes);
 }
 
 function remove(id) {
